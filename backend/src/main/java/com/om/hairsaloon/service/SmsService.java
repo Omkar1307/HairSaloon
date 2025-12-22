@@ -1,29 +1,31 @@
 package com.om.hairsaloon.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SmsService {
 
-    @Value("${twilio.account.sid}")
-    private String accountSid;
+    private final String accountSid;
+    private final String authToken;
+    private final String fromNumber;
 
-    @Value("${twilio.auth.token}")
-    private String authToken;
+    public SmsService() {
+        Dotenv dotenv = Dotenv.load(); // Load .env file
+        this.accountSid = dotenv.get("TWILIO_ACCOUNT_SID");
+        this.authToken = dotenv.get("TWILIO_AUTH_TOKEN");
+        this.fromNumber = dotenv.get("TWILIO_PHONE_NUMBER");
 
-    @Value("${twilio.phone.number}")
-    private String fromNumber;
-
-    public void sendOtp(String toPhone, String otp) {
         Twilio.init(accountSid, authToken);
+    }
 
+    public void sendOtp(String toNumber, String otp) {
         Message.creator(
-                new com.twilio.type.PhoneNumber(toPhone),
-                new com.twilio.type.PhoneNumber(fromNumber),
+                new PhoneNumber(toNumber),
+                new PhoneNumber(fromNumber),
                 "Your OTP is: " + otp
         ).create();
     }
