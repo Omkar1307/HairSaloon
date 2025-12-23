@@ -1,0 +1,128 @@
+/* ensure all elements use border-box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  height: 64px;                  /* slightly smaller */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #000;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* make this selector more specific so it wins over global .logo */
+.navbar .logo {
+  font-size: 20px;
+  line-height: 1;                /* prevents extra vertical space */
+  font-weight: 700;
+  color: #fff !important;        /* use only if you can't remove other .logo rules */
+  padding: 0;
+  margin: 0;
+  height: auto;
+  display: inline-flex;
+  align-items: center;           /* vertical center for multi-line or icon+text */
+}
+
+/* links (right side) */
+.navbar .alink {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.navbar .alink a {
+  text-decoration: none;
+  font-style: normal;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 700;
+  transition: color .2s ease;
+}
+
+.navbar .alink a:not(.loginbutton):hover {
+  color: #ff4d6d;
+}
+
+/* mobile: hide links, you can add hamburger later */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 12px;
+    height: 56px;
+  }
+  .navbar .alink { display: none; }
+}
+
+.loginbutton {
+  height: 30px;
+  width: 60px;
+  padding: 0 48px; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;            /* increases button size */
+  font-size: 16px;                /* text size */
+  font-weight: 600;
+
+  border: none;
+  border-radius: 10px;            /* smooth rounded button */
+
+  color: white;
+  cursor: pointer;
+
+  /* Pink (left) → Violet (right) */
+  background: linear-gradient(
+    to right,
+    #ff4d6d,
+    darkviolet
+  );
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.loginbutton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Click effect */
+.loginbutton:active {
+  transform: scale(0.98);
+}
+
+
+
+/* Nav links */
+.alink a {
+  position: relative;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+/* underline animation ONLY for nav links */
+.alink a:not(.loginbutton)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+/* on hover */
+.alink a:not(.loginbutton):hover::after {
+  width: 100%;
+}

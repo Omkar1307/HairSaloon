@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 100%;
+  background-color: #e2cddb;
+  display: block;   /* IMPORTANT: remove flex layout */
+}
+
+* {
+  font-family: "Segoe UI", Arial, sans-serif;
+}

@@ -1,0 +1,64 @@
+.email-page {
+  width: 430px;
+  height: 380px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #2c2f35;
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.email-page h2 {
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.email-page p {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 40px;
+  font-weight: 2000;
+}
+
+/* Input */
+.email-input-group {
+  margin-bottom: 20px;
+}
+
+.email-input-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Button */
+.email-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(to right, #ff4d6d, darkviolet);
+  color: white;
+  transition: opacity 0.3s ease;
+}
+
+.email-btn:hover {
+  opacity: 0.9;
+}
+
+.login-text{
+    margin-top: 30px;
+}
+
+.email-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: linear-gradient(to right, #777, #555);
+}

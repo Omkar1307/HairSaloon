@@ -1,0 +1,41 @@
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+.input-group input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+}
+.password-reset-page {
+  width: 430px;
+  Height:500px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #2c2f35;
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+.UpdatePasswordBtn {
+  width: 50%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(to right, #ff4d6d, darkviolet);
+  color: white;
+  transition: opacity 0.3s ease;
+}

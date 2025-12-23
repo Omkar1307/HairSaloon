@@ -1,0 +1,127 @@
+.register-page {
+  width: 430px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #2c2f35;
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.register-page h2 {
+  margin-bottom: 5px;
+}
+
+.register-page p {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 25px;
+}
+
+/* Input group */
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 12px 40px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-group input:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+/* Icons */
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}
+
+.eye-icon:hover {
+  color: black;
+}
+
+/* User type */
+.user-type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.user-type-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-type-icon {
+  color: #888;
+}
+
+.user-type-row label {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.user-type-row select {
+  width: 65%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(to right, #ff4d6d, darkviolet);
+  color: white;
+}
+
+.register-btn:hover {
+  opacity: 0.9;
+}
+
+/* Login text */
+.login-text {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.login-link {
+  color: #ff4d6d;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
