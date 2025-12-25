@@ -11,12 +11,12 @@ function CreateNewPasswod() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
      const email = location.state?.email;
-      if (!email) {
-    return <p>Unauthorized access</p>;
-  }
+  //     if (!email) {
+  //   return <p>Unauthorized access</p>;
+  // }
   
   const handleSubmit = () => {
-    // 🔴 Frontend validation
+    // Frontend validation
     if (!password || !confirmPassword) {
       setError("Both fields are required");
       return;
@@ -29,12 +29,9 @@ function CreateNewPasswod() {
 
     setError("");
 
-    // ✅ Call backend API here
+    // Call backend API here
     console.log("Email:", email);
     console.log("New Password:", password);
-
-    // Example:
-    // fetch("/api/reset-password", { ... })
   };
 
   return (
