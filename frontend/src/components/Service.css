@@ -1,0 +1,79 @@
+.service-container {
+  padding: 60px 10%;
+  background-color: #f9f9f9;
+}
+
+.service-title {
+  text-align: center;
+  font-size: 42px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.service-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.service-sections {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.service-card {
+  background: #fff;
+  padding: 30px;
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.service-card h2 {
+  color: #c2185b;
+  margin-bottom: 15px;
+}
+
+.service-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.service-card li {
+  padding: 8px 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.service-card li::before {
+  content: "✔";
+  margin-right: 10px;
+  color: #c2185b;
+}
+
+.service-common {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.service-common h2 {
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.common-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.feature-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+}
