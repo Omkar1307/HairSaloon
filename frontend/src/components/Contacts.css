@@ -1,0 +1,162 @@
+.contact-container {
+  padding: 60px 10%;
+  background-color: #f9f9f9;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-header h1 {
+  font-size: 38px;
+  color: #8a2679;
+}
+
+.contact-header p {
+  font-size: 17px;
+  color: #666;
+  margin-top: 10px;
+}
+
+
+
+.info-box {
+  background: #fff;
+  padding: 1px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-left: 300px;
+    margin-right: 300px;
+}
+
+.info-box h3 {
+  color: #c2185b;
+  margin-bottom: 12px;
+}
+
+.info-box p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.highlight {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #222;
+}
+.contact-page {
+  padding: 60px 10%;
+  background-color: #f5f6fa;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-header h1 {
+  font-size: 40px;
+  color: #222;
+}
+
+.contact-header p {
+  font-size: 17px;
+  color: #666;
+}
+
+/* Joined Card */
+.contact-card {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  border-radius: 18px;
+  overflow: hidden; /* IMPORTANT to join sections */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Left Section */
+.contact-left {
+  background: linear-gradient(135deg, #c2185b, #8e0038);
+  color: #fff;
+  padding: 45px;
+}
+
+.contact-left h3 {
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.contact-left p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.contact-left .bold {
+  font-weight: 600;
+}
+
+/* Right Section */
+.contact-right {
+  background: #ffffff;
+  padding: 50px;
+}
+
+.contact-right h2 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.form-subtitle {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.contact-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-right label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-right input,
+.contact-right textarea {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.response-time {
+  font-size: 13px;
+  color: #777;
+}
+
+.contact-right button {
+  margin-top: 10px;
+  background-color: #c2185b;
+  color: #fff;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-right button:hover {
+  background-color: #a5144a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
+}
