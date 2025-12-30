@@ -1,4 +1,4 @@
-package com.om.hairsaloon.dto;
+package com.om.hairsaloon.entity;
 
 public class PhoneOtpRequest {
     private String phone;

@@ -147,26 +147,6 @@ function Register() {
             {showCPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
-
-        {/* OTP */}
-        <div className="input-group">
-          <MdVerified className="input-icon" />
-          <input
-            type={showOtp ? "text" : "password"}
-            name="otp"
-            placeholder="Enter OTP"
-            value={formData.otp}
-            onChange={handleChange}
-            required
-          />
-          <span
-            className="eye-icon"
-            onClick={() => setShowOtp(!showOtp)}
-          >
-            {showOtp ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </div>
-
         <button className="register-btn">Register</button>
       </form>
 

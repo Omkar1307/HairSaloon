@@ -1,9 +1,7 @@
 package com.om.hairsaloon.controller;
 
-import com.om.hairsaloon.dto.registerRequest;
-import com.om.hairsaloon.store.OTPStore;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.om.hairsaloon.entity.User;
+import com.om.hairsaloon.service.RegisterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,25 +9,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class registerController {
 
-    @Autowired
-    private OTPStore otpStore;
+    private final RegisterService registerService;
+
+    public registerController(RegisterService registerService) {
+        this.registerService = registerService;
+    }
 
     @PostMapping("/api/register")
-    public ResponseEntity<String> registerUser(@RequestBody registerRequest request) {
+    public ResponseEntity<String> registerUser(@RequestBody User request) {
 
-        // 1. Verify OTP
-        if (!otpStore.verifyOTP(request.getEmail(), request.getOtp())) {
-            return ResponseEntity.badRequest().body("Invalid or expired OTP");
-        }
-
-        otpStore.clearOTP(request.getEmail());
-
-        // 2. Print user info (replace with DB save later)
-        System.out.println("Name: " + request.getName());
-        System.out.println("Email: " + request.getEmail());
-        System.out.println("Mobile: " + request.getMobile());
-        System.out.println("UserType: " + request.getUserType());
-        System.out.println("Password: " + request.getPassword());
+        registerService.registerUser(request);
 
         return ResponseEntity.ok("User registered successfully");
     }

@@ -1,6 +1,6 @@
 package com.om.hairsaloon.controller;
 
-import com.om.hairsaloon.dto.PhoneOtpRequest;
+import com.om.hairsaloon.entity.PhoneOtpRequest;
 import com.om.hairsaloon.service.SmsService;
 import com.om.hairsaloon.store.MobOtpStore;
 import com.om.hairsaloon.util.MobOtpGenerator;
