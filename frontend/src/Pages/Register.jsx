@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Register.css";
 import { Link, useLocation } from "react-router-dom";
+import Alert from "../components/Alert";
 import {
   MdEmail,
   MdLock,
@@ -16,9 +17,13 @@ function Register() {
   const location = useLocation();
   const verifiedEmail = location.state?.email || "";
 
-  const [showOtp, setShowOtp] = useState(false);
+ 
    const [showPassword, setShowPassword] = useState(false);
     const [showCPassword, setShowCPassword] = useState(false);
+    const [error, setError] = useState("");
+const [success, setSuccess] = useState("");
+const [alert, setAlert] = useState(null);
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -35,26 +40,47 @@ function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
+  setError("");
+  setSuccess("");
 
-    try {
-      await axios.post("http://localhost:8081/api/register", formData);
-      alert("Registration successful");
+  if (formData.password !== formData.confirmPassword) {
+    setError("Passwords do not match");
+    return;
+  }
+
+  try {
+    const res = await axios.post(
+      "http://localhost:8081/api/register",
+      formData
+    );
+
+    setSuccess(res.data); // "User registered successfully"
+    setAlert({ message: "User registered successfully", type: "success" });
+    setTimeout(() => {
       window.location.href = "/login";
-    } catch (err) {
-      alert("Registration failed");
+    }, 1500);
+
+  } catch (err) {
+    if (err.response && err.response.data) {
+      // BACKEND MESSAGE (Email already registered)
+      setError(err.response.data);
+      setAlert({ message: err.response.data, type: "error" });
+    } else {
+      setError("Registration failed. Please try again.");
+      setAlert({ message: "Registration failed. Please try again", type: "error" });
     }
-  };
+  }
+};
+
 
   return (
+    
     <div className="register-page">
       <h2>Register</h2>
       <p>Create your account</p>
+        <Alert message={alert?.message} type={alert?.type} onClose={() => setAlert(null)} />
 
       <form onSubmit={handleSubmit}>
         {/* Name */}
@@ -133,7 +159,7 @@ function Register() {
         <div className="input-group">
           <MdLock className="input-icon" />
           <input
-            type={showPassword ? "text" : "password"}
+              type={showCPassword ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
             value={formData.confirmPassword}

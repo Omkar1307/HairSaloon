@@ -125,3 +125,14 @@
 .login-link:hover {
   text-decoration: underline;
 }
+.error-text {
+  color: #e63946;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.success-text {
+  color: #2a9d8f;
+  margin-bottom: 10px;
+  font-size: 14px;
+}

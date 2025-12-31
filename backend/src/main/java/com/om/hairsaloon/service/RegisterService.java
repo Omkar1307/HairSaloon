@@ -2,6 +2,7 @@ package com.om.hairsaloon.service;
 
 import com.om.hairsaloon.entity.User;
 import com.om.hairsaloon.entity.User;
+import com.om.hairsaloon.exception.EmailAlreadyExistsException;
 import com.om.hairsaloon.repository.userRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class RegisterService {
     public void registerUser(User person) {
 
         if (userRepository.existsByEmail(person.getEmail())) {
-            throw new RuntimeException("Email already registered");
+            throw new EmailAlreadyExistsException("Email already registered");
         }
 
         User user = new User();
