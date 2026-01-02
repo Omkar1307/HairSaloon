@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import BookingForm from './BookingForm'
 
 function Home(){
+  const [showBooking, setShowBooking] = useState(false)
+
   return (
     <div className="home">
       <header className="hero">
         <div className="hero-content">
           <h1>Welcome to Luxe Hair Salon</h1>
-          <p>Professional styling, modern cuts, and personalized care — because your hair deserves the best.</p>
+          <p className="lead">Professional styling, modern cuts, and personalized care — because your hair deserves the best.</p>
           <div className="hero-cta">
             <Link to="/Service" className="btn primary">Explore Services</Link>
-            <Link to="/contacts" className="btn outline">Book Appointment</Link>
+            <button className="btn outline" onClick={() => setShowBooking(true)}>Book Appointment</button>
           </div>
         </div>
         <div className="hero-image" aria-hidden="true" />
@@ -35,6 +38,18 @@ function Home(){
         </div>
       </section>
 
+      <section className="testimonials">
+        <h2>What clients say</h2>
+        <div className="test-cards">
+          <blockquote className="test">
+            "Fantastic cut and color — I always leave feeling refreshed." <cite>— Priya</cite>
+          </blockquote>
+          <blockquote className="test">
+            "Friendly team and relaxing atmosphere. Highly recommend." <cite>— Daniel</cite>
+          </blockquote>
+        </div>
+      </section>
+
       <section className="specials">
         <h2>Popular Services</h2>
         <ul>
@@ -44,6 +59,8 @@ function Home(){
         </ul>
         <Link to="/Service" className="btn secondary">See All Services</Link>
       </section>
+
+      {showBooking && <BookingForm onClose={() => setShowBooking(false)} />}
     </div>
   )
 }

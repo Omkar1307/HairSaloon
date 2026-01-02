@@ -1,0 +1,12 @@
+.booking-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:60}
+.booking-modal{background:#fff;padding:1rem;border-radius:10px;max-width:480px;width:92%;box-shadow:0 8px 30px rgba(0,0,0,0.12)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.modal-head h3{margin:0;font-size:1.125rem}
+.modal-head .close{background:transparent;border:0;font-size:1.5rem;line-height:1;cursor:pointer}
+.booking-form label{display:block;font-size:.9rem;color:#333;margin-bottom:.6rem}
+.booking-form input,.booking-form select{display:block;width:100%;padding:.5rem;border:1px solid #e6e6e6;border-radius:6px;margin-top:.35rem}
+.booking-form .row{display:flex;gap:.5rem}
+.booking-form .row label{flex:1}
+.actions{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.75rem}
+.submitted{text-align:center;padding:1.2rem}
+.submitted h4{margin:.25rem 0}
