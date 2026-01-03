@@ -38,6 +38,32 @@ function Home(){
         </div>
       </section>
 
+      <section className="how-to-book">
+        <h2>How to Book Salon Online</h2>
+        <div className="steps-grid">
+          <div className="step-box">
+            <div className="step-number">1</div>
+            <h3>Search Salons</h3>
+            <p>Find beauty salons near you offering hair, skin, and beauty services you need.</p>
+          </div>
+          <div className="step-box">
+            <div className="step-number">2</div>
+            <h3>Choose Service</h3>
+            <p>Choose your preferred salon, services like haircut, facial, or massage, and convenient time slot.</p>
+          </div>
+          <div className="step-box">
+            <div className="step-number">3</div>
+            <h3>Select Time Slot</h3>
+            <p>Select your preferred time slot, arrive at the salon, and enjoy your beauty treatment with ease.</p>
+          </div>
+          <div className="step-box">
+            <div className="step-number">4</div>
+            <h3>Confirm Booking</h3>
+            <p>Book your appointment and get instant confirmation with all details.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="testimonials">
         <h2>What clients say</h2>
         <div className="test-cards">
