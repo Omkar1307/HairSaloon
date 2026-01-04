@@ -64,6 +64,36 @@ function Home(){
         </div>
       </section>
 
+      <section className="why-choose">
+        <h2>Why Choose SalonHub for Online Salon Booking?</h2>
+        <div className="features-grid">
+          <div className="feature-box">
+            <h3>Easy Online Booking</h3>
+            <p>Book salon appointments 24/7 from your mobile or desktop. Instant confirmation for all beauty services.</p>
+          </div>
+          <div className="feature-box">
+            <h3>Best Salons Near You</h3>
+            <p>Find top-rated beauty salons and spas in your city with genuine customer reviews and ratings.</p>
+          </div>
+          <div className="feature-box">
+            <h3>Real-Time Slot Availability</h3>
+            <p>See available time slots in real-time and choose what fits your schedule best for hair and beauty services.</p>
+          </div>
+          <div className="feature-box">
+            <h3>Verified Customer Reviews</h3>
+            <p>Make informed decisions with authentic reviews and ratings from other customers.</p>
+          </div>
+          <div className="feature-box">
+            <h3>Wide Service Selection</h3>
+            <p>From basic haircuts to bridal packages, find all beauty services in one platform.</p>
+          </div>
+          <div className="feature-box">
+            <h3>Secure Online Payments</h3>
+            <p>Pay securely online with multiple payment options and focus on your beauty experience.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="testimonials">
         <h2>What clients say</h2>
         <div className="test-cards">
