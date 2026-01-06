@@ -1,82 +1,142 @@
 import { useState } from "react";
 import "./Login.css";
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { MdEmail, MdLock } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 function Login() {
-    const [loginType, setLoginType] = useState("email");
-    const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const [loginType, setLoginType] = useState("email");
+  const [showPassword, setShowPassword] = useState(false);
 
-    return (
-        <div className="login-page">
-            <h2>Login</h2>
-            <h4>Please enter your details</h4>
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
 
-            {/* Toggle */}
-            <div className="login-toggle">
-                <button
-                    className={loginType === "email" ? "active" : ""}
-                    onClick={() => setLoginType("email")}
-                >
-                    <MdEmail />
-                    Email
-                </button>
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-                <button
-                    className={loginType === "phone" ? "active" : ""}
-                    onClick={() => setLoginType("phone")}
-                >
-                    <FaPhoneAlt />
-                    Phone
-                </button>
-            </div>
+  // 🔐 LOGIN API
+  const handleLogin = async () => {
+    setError("");
 
-            {/* Dynamic Input */}
-            {loginType === "email" ? (
-                <div className="input-group">
-                    <MdEmail className="input-icon" />
-                    <input type="email" placeholder="Enter Email" />
-                </div>
-            ) : (
-                <div className="input-group">
-                    <FaPhoneAlt className="input-icon" />
-                    <input type="tel" placeholder="Enter Phone Number" />
-                </div>
-            )}
+    if (
+      !password ||
+      (loginType === "email" && !email) ||
+      (loginType === "phone" && !mobile)
+    ) {
+      setError("All fields are required");
+      return;
+    }
 
-            {/* Password */}
-            <div className="input-group">
-                <MdLock className="input-icon" />
+    // ✅ PAYLOAD BASED ON LOGIN TYPE
+    let payload = {};
 
-                <input placeholder="Password" type={showPassword ? "text" : "password"} />
-                <span
-                    className="eye-icon"
-                    onClick={() => setShowPassword(!showPassword)}
-                >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </span>
+    if (loginType === "email") {
+      payload = {
+        email: email,
+        password: password,
+      };
+    } else {
+      payload = {
+        mobile: mobile,
+        password: password,
+      };
+    }
 
+    try {
+      setLoading(true);
 
-            </div>
-            <div className="forgot-password">
-                <Link to="/EmailOtpVerification" className="register-link">Forgot Password</Link>
-            </div>
-            <button className="login-btn">Login</button>
-            <div className="register-text">
-                Don’t have an account?
-                <Link
-    to="/EmailOtpVerification"
-    state={{ purpose: "register" }}
-    className="register-link"
-  >Register
-  </Link>
-            </div>
+      const response = await axios.post(
+        "http://localhost:8081/api/auth/login",
+        payload
+      );
 
+      console.log("Login Success:", response.data);
+
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+      }
+
+      alert("Login successful");
+       // Redirect to dashboard
+      navigate("/landing");
+    } catch (err) {
+      setError(err.response?.data?.message || "Invalid credentials");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="login-page">
+      <h2>Login</h2>
+      <h4>Please enter your details</h4>
+
+      {/* Toggle */}
+      <div className="login-toggle">
+        <button
+          className={loginType === "email" ? "active" : ""}
+          onClick={() => setLoginType("email")}
+        >
+          <MdEmail /> Email
+        </button>
+
+        <button
+          className={loginType === "phone" ? "active" : ""}
+          onClick={() => setLoginType("phone")}
+        >
+          <FaPhoneAlt /> Phone
+        </button>
+      </div>
+
+      {/* Email / Phone Input */}
+      {loginType === "email" ? (
+        <div className="input-group">
+          <MdEmail className="input-icon" />
+          <input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
+      ) : (
+        <div className="input-group">
+          <FaPhoneAlt className="input-icon" />
+          <input
+            type="tel"
+            placeholder="Enter Phone Number"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+          />
+        </div>
+      )}
 
-    );
+      {/* Password */}
+      <div className="input-group">
+        <MdLock className="input-icon" />
+        <input
+          placeholder="Password"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </span>
+      </div>
+
+      {error && <p className="error-text">{error}</p>}
+
+      <button className="login-btn" onClick={handleLogin} disabled={loading}>
+        {loading ? "Logging in..." : "Login"}
+      </button>
+    </div>
+  );
 }
 
 export default Login;
