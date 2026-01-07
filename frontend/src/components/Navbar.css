@@ -8,7 +8,7 @@
 /* NAVBAR */
 .navbar {
   width: 100%;
-  height: 64px;                  /* slightly smaller */
+  height: 64px;                 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,3 +126,58 @@
 .alink a:not(.loginbutton):hover::after {
   width: 100%;
 }
+
+/* Profile button (when logged in) */
+.profile-area { display: flex; align-items: center; }
+.profile-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-icon { font-size: 26px; }
+
+/* Overlay that covers the page when menu is open */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 999;
+}
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Side menu sliding from the right */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  width: 320px;
+  max-width: 90%;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  transition: right .28s cubic-bezier(.22,.9,.36,1);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+}
+.side-menu.open { right: 0; }
+
+.side-menu-inner { padding: 22px; width: 100%; }
+.profile-top { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.avatar-large { font-size:48px; color:#222; }
+.profile-name { font-weight:700; font-size:16px; color:#222; }
+.menu-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.menu-list li { cursor:pointer; padding:10px 12px; border-radius:8px; transition: background .15s ease; color:#222; font-weight:600; }
+.menu-list li:hover { background:#f6f6f6; }

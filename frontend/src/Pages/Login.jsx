@@ -59,6 +59,8 @@ function Login() {
 
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
+          // notify other parts of the app (same-tab) that auth changed
+          window.dispatchEvent(new Event("authChanged"));
       }
 
       alert("Login successful");

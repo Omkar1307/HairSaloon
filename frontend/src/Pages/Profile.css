@@ -1,0 +1,12 @@
+.profile-page { display:flex; justify-content:center; padding:36px 16px; }
+.profile-card { width:100%; max-width:760px; background:#fff; padding:22px; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.08); }
+.profile-card h2 { margin:0 0 12px 0; }
+.profile-form { display:flex; flex-direction:column; gap:12px; }
+.profile-form label { display:flex; flex-direction:column; font-weight:600; color:#222; }
+.profile-form input { margin-top:6px; padding:10px 12px; border:1px solid #ddd; border-radius:6px; }
+.profile-actions { display:flex; gap:12px; justify-content:flex-end; margin-top:8px; }
+.btn { padding:8px 14px; border-radius:8px; cursor:pointer; border:none; }
+.btn.primary { background:linear-gradient(to right,#ff4d6d,darkviolet); color:#fff; font-weight:700; }
+.btn.secondary { background:#f3f3f3; color:#222; }
+.profile-error { color:#b30; font-weight:700; }
+.profile-success { color:#0a8; font-weight:700; }
