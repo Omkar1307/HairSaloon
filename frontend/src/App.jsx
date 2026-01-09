@@ -12,6 +12,8 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import EmailOtpVerification from './components/EmailOtpVerification'
 import CreateNewPasswod from './components/CreateNewPasswod'
+import LandingPage from './Pages/LandingPage'
+import Profile from './Pages/Profile'
 function App() {
  
   return (
@@ -27,6 +29,8 @@ function App() {
       <Route path='/EmailOtpVerification' element={<EmailOtpVerification/>}/>
       <Route path='/reset-password' element={<CreateNewPasswod/>}/>
       <Route path='/forgotPassword' element={<EmailOtpVerification purpose="forgot" />}/>
+      <Route path='/landing' element={<LandingPage/>}/> 
+      <Route path='/profile' element={<Profile/>} />
     </Routes>
     
    <Footer/>
