@@ -27,9 +27,12 @@
 .hero-image {
   height: 420px;
   border-radius: 14px;
-  background-image: url('/assets/hero.jpg');
-  background-size: cover;
-  background-position: center;
+  /* show a fallback gradient/color if the image file is missing */
+  background-color: #2b2b2b;
+  background-image: url('/assets/hero.jpg'), linear-gradient(135deg, #f7d6c2, #f0b39b);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
   box-shadow: 0 12px 40px rgba(0,0,0,0.6);
 }
 

@@ -14,6 +14,7 @@ import EmailOtpVerification from './components/EmailOtpVerification'
 import CreateNewPasswod from './components/CreateNewPasswod'
 import LandingPage from './Pages/LandingPage'
 import Profile from './Pages/Profile'
+import BookAppointment from './Pages/BookAppointment'
 function App() {
  
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path='/reset-password' element={<CreateNewPasswod/>}/>
       <Route path='/forgotPassword' element={<EmailOtpVerification purpose="forgot" />}/>
       <Route path='/landing' element={<LandingPage/>}/> 
+      <Route path='/book-appointment' element={<BookAppointment/>} />
       <Route path='/profile' element={<Profile/>} />
     </Routes>
     
