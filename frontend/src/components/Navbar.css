@@ -80,13 +80,15 @@
   color: #ff4d6d;
 }
 
-/* mobile: hide links, you can add hamburger later */
+/* mobile: hide nav links but keep profile icon and login visible */
 @media (max-width: 768px) {
   .navbar {
     padding: 0 12px;
     height: 56px;
   }
-  .navbar .alink { display: none; }
+  .navbar .alink a:not(.loginbutton) {
+    display: none;
+  }
 }
 
 .loginbutton {

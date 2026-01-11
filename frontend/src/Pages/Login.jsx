@@ -32,43 +32,26 @@ function Login() {
       return;
     }
 
-    // ✅ PAYLOAD BASED ON LOGIN TYPE
-    let payload = {};
-
-    if (loginType === "email") {
-      payload = {
-        email: email,
-        password: password,
-      };
-    } else {
-      payload = {
-        mobile: mobile,
-        password: password,
-      };
-    }
-
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        "http://localhost:8081/api/auth/login",
-        payload
-      );
+      // For now, just mock the login without token dependency
+      // TODO: Replace with actual backend call when API is ready
+      await new Promise((r) => setTimeout(r, 800)); // Simulate API delay
 
-      console.log("Login Success:", response.data);
+      // Store a dummy token/flag to mark user as logged in
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", loginType === "email" ? email : mobile);
 
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-          // notify other parts of the app (same-tab) that auth changed
-          window.dispatchEvent(new Event("authChanged"));
-      }
+      // Notify navbar that user is logged in
+      window.dispatchEvent(new Event("authChanged"));
 
-      alert("Login successful");
-       // Redirect to dashboard
-      navigate("/landing");
+      setTimeout(() => {
+        navigate("/landing");
+      }, 150);
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid credentials");
-    } finally {
+      console.error("Login Error:", err);
+      setError("Login failed. Please try again.");
       setLoading(false);
     }
   };

@@ -12,23 +12,24 @@ function Navbar() {
     const location = useLocation();
 
     useEffect(() => {
-        setIsLogged(!!localStorage.getItem("token"));
+        setIsLogged(!!localStorage.getItem("isLoggedIn"));
     }, [location]);
 
     useEffect(() => {
-        const onStorage = () => setIsLogged(!!localStorage.getItem("token"));
+        const onStorage = () => setIsLogged(!!localStorage.getItem("isLoggedIn"));
         window.addEventListener("storage", onStorage);
         return () => window.removeEventListener("storage", onStorage);
     }, []);
 
     useEffect(() => {
-        const onAuthChanged = () => setIsLogged(!!localStorage.getItem("token"));
+        const onAuthChanged = () => setIsLogged(!!localStorage.getItem("isLoggedIn"));
         window.addEventListener("authChanged", onAuthChanged);
         return () => window.removeEventListener("authChanged", onAuthChanged);
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userEmail");
         setShowMenu(false);
         setIsLogged(false);
         navigate("/login");
