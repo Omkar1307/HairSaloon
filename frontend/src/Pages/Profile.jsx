@@ -2,122 +2,199 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaUser, FaEnvelope, FaPhone, FaEdit } from "react-icons/fa";
 
 function Profile() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Guest User");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState({ name: "", email: "", phone: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
+    // Try to get user email from localStorage after login
+    const userEmail = localStorage.getItem("userEmail");
+    if (userEmail) {
+      setEmail(userEmail);
+      setEditForm((f) => ({ ...f, email: userEmail }));
+    }
+
     // Try localStorage first
     const stored = localStorage.getItem("profile");
     if (stored) {
       try {
         const p = JSON.parse(stored);
-        setName(p.name || "");
-        setEmail(p.email || "");
+        setName(p.name || "Guest User");
+        setEmail(p.email || userEmail || "");
         setPhone(p.phone || "");
+        setEditForm({ name: p.name || "", email: p.email || userEmail || "", phone: p.phone || "" });
         return;
       } catch (e) {
         // ignore parse error
       }
     }
 
-    // If token exists, try fetching from API (best-effort)
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    (async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get("http://localhost:8081/api/auth/me", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const d = res.data || {};
-        setName(d.name || d.fullName || "");
-        setEmail(d.email || "");
-        setPhone(d.mobile || d.phone || "");
-      } catch (err) {
-        // ignore — this is optional
-      } finally {
-        setLoading(false);
-      }
-    })();
+    // Pre-fill form with current values
+    setEditForm({ name, email, phone });
   }, []);
+
+  const handleEdit = () => {
+    setEditForm({ name, email, phone });
+    setIsEditing(true);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setError("");
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditForm((f) => ({ ...f, [name]: value }));
+  };
 
   const handleSave = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
-    if (!name || !email) {
+    if (!editForm.name || !editForm.email) {
       setError("Name and email are required");
       return;
     }
 
-    const payload = { name, email, phone };
-
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        setLoading(true);
-        // Try to update on server if endpoint exists — best-effort
-        await axios.put("http://localhost:8081/api/auth/update", payload, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setSuccess("Profile updated");
-      } catch (err) {
-        // If server fails, fallback to localStorage
-        localStorage.setItem("profile", JSON.stringify(payload));
-        setSuccess("Saved locally (server update failed)");
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      // No token — save to localStorage for demo purposes
+    try {
+      setLoading(true);
+      const payload = editForm;
+      
+      // Save to localStorage
       localStorage.setItem("profile", JSON.stringify(payload));
-      setSuccess("Profile saved locally");
+      
+      // Update state
+      setName(payload.name);
+      setEmail(payload.email);
+      setPhone(payload.phone);
+      
+      setSuccess("Profile updated successfully!");
+      setIsEditing(false);
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError("Failed to update profile");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleBack = () => navigate("/");
-
   return (
     <div className="profile-page">
-      <div className="profile-card">
-        <h2>My Profile</h2>
-        <form onSubmit={handleSave} className="profile-form">
-          <label>
-            Name
-            <input value={name} onChange={(e) => setName(e.target.value)} />
-          </label>
-
-          <label>
-            Email
-            <input value={email} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-
-          <label>
-            Phone
-            <input value={phone} onChange={(e) => setPhone(e.target.value)} />
-          </label>
-
-          {error && <div className="profile-error">{error}</div>}
-          {success && <div className="profile-success">{success}</div>}
-
-          <div className="profile-actions">
-            <button type="button" className="btn secondary" onClick={handleBack}>
-              Back
-            </button>
-            <button type="submit" className="btn primary" disabled={loading}>
-              {loading ? "Saving..." : "Save"}
-            </button>
+      <div className="profile-container">
+        <div className="profile-header">
+          <div className="profile-avatar">
+            <FaUser className="avatar-icon" />
           </div>
-        </form>
+          <div>
+            <h1>{name}</h1>
+            <p className="profile-subtitle">{email}</p>
+          </div>
+          {!isEditing && (
+            <button className="btn-edit" onClick={handleEdit}>
+              <FaEdit /> Edit Profile
+            </button>
+          )}
+        </div>
+
+        {!isEditing ? (
+          <div className="profile-info">
+            <div className="info-item">
+              <div className="info-icon">
+                <FaUser />
+              </div>
+              <div>
+                <p className="info-label">Full Name</p>
+                <p className="info-value">{name || "Not set"}</p>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <div className="info-icon">
+                <FaEnvelope />
+              </div>
+              <div>
+                <p className="info-label">Email Address</p>
+                <p className="info-value">{email || "Not set"}</p>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <div className="info-icon">
+                <FaPhone />
+              </div>
+              <div>
+                <p className="info-label">Phone Number</p>
+                <p className="info-value">{phone || "Not set"}</p>
+              </div>
+            </div>
+
+            <div className="profile-actions">
+              <button className="btn secondary" onClick={() => navigate("/book-appointment")}>
+                Book Appointment
+              </button>
+              <button className="btn secondary" onClick={() => navigate("/")}>
+                Back to Home
+              </button>
+            </div>
+          </div>
+        ) : (
+          <form className="profile-form" onSubmit={handleSave}>
+            <label>
+              Full Name
+              <input
+                type="text"
+                name="name"
+                value={editForm.name}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+
+            <label>
+              Email Address
+              <input
+                type="email"
+                name="email"
+                value={editForm.email}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+
+            <label>
+              Phone Number
+              <input
+                type="tel"
+                name="phone"
+                value={editForm.phone}
+                onChange={handleInputChange}
+              />
+            </label>
+
+            {error && <div className="profile-error">{error}</div>}
+            {success && <div className="profile-success">{success}</div>}
+
+            <div className="form-actions">
+              <button type="button" className="btn secondary" onClick={handleCancel} disabled={loading}>
+                Cancel
+              </button>
+              <button type="submit" className="btn primary" disabled={loading}>
+                {loading ? "Saving..." : "Save Changes"}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
