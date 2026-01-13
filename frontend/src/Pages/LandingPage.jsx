@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 
 function LandingPage() {
   const navigate = useNavigate()
-  const phone = '+1234567890' // update to your business number
 
   return (
     <main className="landing-hero">
@@ -14,12 +13,38 @@ function LandingPage() {
 
         <div className="hero-ctas">
           <button className="btn btn-primary" onClick={() => navigate('/book-appointment')}>Book Now</button>
+          <button className="btn btn-secondary" onClick={() => navigate('/Service')}>Explore Services</button>
         </div>
 
-        <div className="hero-trust">Trusted by hundreds — <strong>4.8★</strong></div>
+        <div className="hero-trust">
+          <span className="trust-item">
+            <span className="trust-icon">✓</span>
+            <span>Trusted by hundreds — <strong>4.8★</strong></span>
+          </span>
+          <span className="trust-item">
+            <span className="trust-icon">⏱</span>
+            <span><strong>Quick bookings</strong> in seconds</span>
+          </span>
+        </div>
       </div>
 
-      <div className="hero-image" aria-hidden="true" />
+      <div className="hero-features">
+        <div className="feature-card">
+          <div className="feature-icon">✂️</div>
+          <h3>Expert Stylists</h3>
+          <p>Certified professionals with 10+ years experience</p>
+        </div>
+        <div className="feature-card">
+          <div className="feature-icon">⭐</div>
+          <h3>Premium Service</h3>
+          <p>Top-rated salon with personalized care</p>
+        </div>
+        <div className="feature-card">
+          <div className="feature-icon">⚡</div>
+          <h3>Fast & Easy</h3>
+          <p>Book online anytime, flexible scheduling</p>
+        </div>
+      </div>
     </main>
   )
 }

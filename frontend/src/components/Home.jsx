@@ -17,7 +17,20 @@ function Home(){
             <button className="btn outline" onClick={() => setShowBooking(true)}>Book Appointment</button>
           </div>
         </div>
-        <div className="hero-image" aria-hidden="true" />
+        <div className="hero-stats">
+          <div className="stat-item">
+            <div className="stat-number">5K+</div>
+            <div className="stat-label">Happy Clients</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">15+</div>
+            <div className="stat-label">Years Exp.</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">4.9★</div>
+            <div className="stat-label">Top Rated</div>
+          </div>
+        </div>
       </header>
 
       <section className="features">
